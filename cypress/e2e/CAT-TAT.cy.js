@@ -21,7 +21,6 @@ describe('Central de Atendimento ao Cliente TAT', () => {
   })
 
 //Exercício extra 2
-
   it('Exibe mensagem de erro ao submeter o formulário com um email de formatação inválida', () => {
     cy.get('#firstName').type('Vinícius')
     cy.get('#lastName').type('Meurer Petry')
@@ -33,13 +32,11 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     })
 
 //Exercício extra 3
-
   it('Campo telefone continua vazio quando preenchido com um valor não-numérico', () => {
     cy.get('#phone').type('abcde').should('have.value', '')
   })
 
 //Exercício extra 4
-
   it('Exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', () => {
     cy.get('#firstName').type('Vinícius')
     cy.get('#lastName').type('Meurer Petry')
@@ -52,7 +49,6 @@ describe('Central de Atendimento ao Cliente TAT', () => {
   })
 
 //Exercício extra 5
-
   it('Preenche e limpa os campos nome, sobrenome, email e telefone', () => {
     cy.get('#firstName').type('Vinícius').should('have.value', 'Vinícius').clear().should('have.value', '')
     cy.get('#lastName').type('Meurer Petry').should('have.value', 'Meurer Petry').clear().should('have.value', '')
@@ -60,12 +56,16 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('#open-text-area').type('Teste').should('have.value', 'Teste').clear().should('have.value', '')
   })
 
-  //Exercicio extra 6
-
-  it.only('Exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', () => {
+//Exercicio extra 6
+  it('Exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', () => {
     cy.get('#phone-checkbox').check()
     cy.get('button[type="submit"]').click()
     cy.get('.error').should('be.visible')
   })
 
+//Exercicio extra 7.1
+  it.only('Envia o formulário com sucesso usando um comando customizado', () => {
+    cy.fillMandatoryFieldsAndSubmit()
+  cy.get('.success').should('be.visible')
+  })
 })
