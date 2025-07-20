@@ -40,15 +40,24 @@ describe('Central de Atendimento ao Cliente TAT', () => {
 
 //Exercício extra 4
 
-  it.only('Exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', () => {
-      cy.get('#firstName').type('Vinícius')
-      cy.get('#lastName').type('Meurer Petry')
-      cy.get('#email').type('viniciusmeurer2012@gmail.com')
-      cy.get('#open-text-area').type('Teste')
-      cy.get('#phone-checkbox').check()
-      cy.get('button[type="submit"]').click()
+  it('Exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', () => {
+    cy.get('#firstName').type('Vinícius')
+    cy.get('#lastName').type('Meurer Petry')
+    cy.get('#email').type('viniciusmeurer2012@gmail.com')
+    cy.get('#open-text-area').type('Teste')
+    cy.get('#phone-checkbox').check()
+    cy.get('button[type="submit"]').click()
 
-      cy.get('.error').should('be.visible')
+    cy.get('.error').should('be.visible')
+  })
+
+//Exercício extra 5
+
+  it.only('Preenche e limpa os campos nome, sobrenome, email e telefone', () => {
+    cy.get('#firstName').type('Vinícius').should('have.value', 'Vinícius').clear().should('have.value', '')
+    cy.get('#lastName').type('Meurer Petry').should('have.value', 'Meurer Petry').clear().should('have.value', '')
+    cy.get('#email').type('viniciusmeurer2012gmail.com').should('have.value', 'viniciusmeurer2012gmail.com').clear().should('have.value', '')
+    cy.get('#open-text-area').type('Teste').should('have.value', 'Teste').clear().should('have.value', '')
   })
 
 })
