@@ -20,6 +20,8 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('.success').should('be.visible')
   })
 
+//Exercício extra 2
+
   it('Exibe mensagem de erro ao submeter o formulário com um email de formatação inválida', () => {
     cy.get('#firstName').type('Vinícius')
     cy.get('#lastName').type('Meurer Petry')
@@ -30,11 +32,23 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('.error').should('be.visible')
     })
 
-  it.only('Campo telefone continua vazio quando preenchido com um valor não-numérico', () => {
+//Exercício extra 3
+
+  it('Campo telefone continua vazio quando preenchido com um valor não-numérico', () => {
     cy.get('#phone').type('abcde').should('have.value', '')
   })
 
+//Exercício extra 4
 
+  it.only('Exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', () => {
+      cy.get('#firstName').type('Vinícius')
+      cy.get('#lastName').type('Meurer Petry')
+      cy.get('#email').type('viniciusmeurer2012@gmail.com')
+      cy.get('#open-text-area').type('Teste')
+      cy.get('#phone-checkbox').check()
+      cy.get('button[type="submit"]').click()
 
+      cy.get('.error').should('be.visible')
+  })
 
 })
