@@ -64,8 +64,21 @@ describe('Central de Atendimento ao Cliente TAT', () => {
   })
 
 //Exercicio extra 7.1
-  it.only('Envia o formulário com sucesso usando um comando customizado', () => {
+  /* it('Envia o formulário com sucesso usando um comando customizado pt1', () => {
     cy.fillMandatoryFieldsAndSubmit()
   cy.get('.success').should('be.visible')
-  })
+  }) */
+
+  //Exercicio extra 7.2
+  it.only('Envia o formulário com sucesso usando um comando customizado pt2', () => {
+    const data = {
+        firstName: 'Vinícius',
+        lastName: 'Meurer Petry',
+        email: 'Viniciusmeurer2012@gmail.com',
+        text: 'teste.'
+    }
+
+    cy.fillMandatoryFieldsAndSubmit(data)
+    cy.get('.success').should('be.visible')
+    })
 })
